@@ -6,6 +6,7 @@ import { TamaguiProvider } from 'tamagui';
 import config from '../tamagui.config';
 import PetImage from '~/components/PetImage';
 import MyButton from '~/components/MyButton';
+import Cat from '~/components/Cat';
 
 export default function Layout() {
   const [happiness, setHappiness] = useState(10);
@@ -30,6 +31,7 @@ export default function Layout() {
     <TamaguiProvider config={config}>
       <Stack flex={1} justifyContent='center' alignItems='center'>
         <Text>Happiness : {happiness}</Text>
+        <Cat />
         <PetImage happiness={happiness} />
         <MyButton title="Play with Cat" onPress={()=> playWithPet()} />
       </Stack>
