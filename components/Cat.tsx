@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Stack, Text } from 'tamagui';
-import { Animated } from 'react-native';
+import { Animated, Easing } from 'react-native';
 
 
 const Cat = () =>{
@@ -11,17 +11,26 @@ const Cat = () =>{
     const moveCat = ()=>{
         const randomTop = Math.random()*400;
         const randomLeft = Math.random()*300;
-        Animated.timing(animatedTop, {
-            toValue: randomTop,
-            duration:1000,
-            useNativeDriver:false,
-        }).start();
 
-        Animated.timing(animatedLeft, {
-            toValue: randomLeft,
-            duration: 1000,
-            useNativeDriver: false,
-          }).start();
+        Animated.parallel([
+            Animated.timing(animatedTop, {
+                toValue: randomTop,
+                duration:1000,
+                easing:Easing.bounce,
+                useNativeDriver:false,
+            }),
+    
+            Animated.timing(animatedLeft, {
+                toValue: randomLeft,
+                duration: 1000,
+                useNativeDriver: false,
+                easing:Easing.inOut(Easing.ease),
+              }),
+
+              
+
+        ]).start()
+
     }
 
     useEffect(()=>{
